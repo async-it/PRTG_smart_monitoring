@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<ValueLookup id="oid.smart.test" desiredValue="0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="PaeValueLookup.xsd">
+		<Lookups>
+				<SingleInt state="Ok" value="0">
+				Smart OK
+				</SingleInt>
+				<SingleInt state="Warning" value="2">
+				Device Open Failed
+				</SingleInt>
+				<SingleInt state="Error" value="3">
+				Command Failed
+				</SingleInt>
+				<SingleInt state="Error" value="4">
+				Disk Failing
+				</SingleInt>
+				<SingleInt state="Warning" value="5">
+				Prefail Attributes Detected
+				</SingleInt>
+				<SingleInt state="Warning" value="6">
+				Log Contain Old Value Prefail
+				</SingleInt>
+				<SingleInt state="Warning" value="7">
+			Log Contain Error Records
+				</SingleInt>
+				<SingleInt state="Error" value="8">
+				Self-test Contains Errors
+				</SingleInt>
+				<SingleInt state="Error" value="9">
+				More Than 1 Error Detected
+				</SingleInt>
+		</Lookups>
+	</ValueLookup>
