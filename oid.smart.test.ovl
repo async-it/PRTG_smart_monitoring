@@ -20,7 +20,7 @@
 				Log Contain Old Value Prefail
 				</SingleInt>
 				<SingleInt state="Warning" value="7">
-			Log Contain Error Records
+				Log Contain Error Records
 				</SingleInt>
 				<SingleInt state="Error" value="8">
 				Self-test Contains Errors
