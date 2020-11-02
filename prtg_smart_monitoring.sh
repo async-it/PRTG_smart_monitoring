@@ -18,8 +18,6 @@
 # 	Add advanced ssh script sensor
 # 	Name sensor and select the script - adjust Scan interval in case of need
 # 	Add sensor
-# 	Once script has run, edit SMART Channels "Value Lookup" to use oid.smart.test
-
 
 
 # Smart CTL outputs:
@@ -30,6 +28,7 @@
 # Version 1.1 - Removed drive path from sensor nas as it's kind of usless.
 # Version 2.0 - Add SMART status retreiving using exit code - set values
 # Version 2.1 - Add case if there's more than 1 error
+# Version 2.2 - Automatically set value lookup
 
 SMARTCTL="/usr/sbin/smartctl"
 
