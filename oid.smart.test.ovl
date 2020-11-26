@@ -4,6 +4,9 @@
 				<SingleInt state="Ok" value="0">
 				Smart OK
 				</SingleInt>
+				<SingleInt state="None" value="1">
+				No SMART Support
+				</SingleInt>
 				<SingleInt state="Warning" value="2">
 				Device Open Failed
 				</SingleInt>
