@@ -29,6 +29,7 @@
 # Version 2.0 - Add SMART status retreiving using exit code - set values
 # Version 2.1 - Add case if there's more than 1 error
 # Version 2.2 - Automatically set value lookup
+# Version 2.3 - Add support when device does not have SMART support
 
 SMARTCTL="/usr/sbin/smartctl"
 
@@ -40,6 +41,8 @@ for DEVICE in `$SMARTCTL --scan-open | grep -o "^/dev/[0-9A-Za-z]*"`; do
   
   if [ "$varstatus" -eq 0 ]; then
     echo "		<value>0</value>"
+  elif [ "$varstatus" -eq 255 ]; then
+    echo "		<value>1</value>"
   elif [ "$varstatus" -eq 2 ]; then
     echo "		<value>2</value>"
   elif [ "$varstatus" -eq 4 ]; then
