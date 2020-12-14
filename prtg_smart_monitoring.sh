@@ -30,6 +30,7 @@
 # Version 2.1 - Add case if there's more than 1 error
 # Version 2.2 - Automatically set value lookup
 # Version 2.3 - Add support when device does not have SMART support
+# Version 2.4 - Add check for keyword that may indicate failures - experience showed only checkink for smart status exit code is not enough
 
 SMARTCTL="/usr/sbin/smartctl"
 
@@ -40,7 +41,12 @@ for DEVICE in `$SMARTCTL --scan-open | grep -o "^/dev/[0-9A-Za-z]*"`; do
   varstatus=$?
   
   if [ "$varstatus" -eq 0 ]; then
-    echo "		<value>0</value>"
+    smart_status=$($SMARTCTL -a $DEVICE)
+    if echo $smart_status | egrep -wqi 'failure' ; then
+		echo "		<value>4</value>"
+		else
+        echo "		<value>0</value>"
+    fi
   elif [ "$varstatus" -eq 255 ]; then
     echo "		<value>1</value>"
   elif [ "$varstatus" -eq 2 ]; then
