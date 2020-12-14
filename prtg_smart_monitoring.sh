@@ -43,8 +43,8 @@ for DEVICE in `$SMARTCTL --scan-open | grep -o "^/dev/[0-9A-Za-z]*"`; do
   if [ "$varstatus" -eq 0 ]; then
     smart_status=$($SMARTCTL -a $DEVICE)
     if echo $smart_status | egrep -wqi 'failure' ; then
-		echo "		<value>4</value>"
-		else
+	echo "		<value>4</value>"
+	else
         echo "		<value>0</value>"
     fi
   elif [ "$varstatus" -eq 255 ]; then
@@ -70,9 +70,5 @@ for DEVICE in `$SMARTCTL --scan-open | grep -o "^/dev/[0-9A-Za-z]*"`; do
   echo "		<unit>Custom</unit>"
   echo "    <ValueLookup>oid.smart.test</ValueLookup>"
   echo "</result>"
-  
-# -------------- All SMART VALUES ---------------------
-# $SMARTCTL -A $DEVICE | grep '^[ 0-9][ 0-9][0-9]' | awk '{print "<result>" "\n\t<channel>'"$DEVICE"': " $2 "</channel>\n" "\t<value>" $10 "</value>\n" "</result>"}';
-
 done;
 echo "</prtg>"
