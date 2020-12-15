@@ -31,22 +31,18 @@
 # Version 2.2 - Automatically set value lookup
 # Version 2.3 - Add support when device does not have SMART support
 # Version 2.4 - Add check for keyword that may indicate failures - experience showed only checkink for smart status exit code is not enough
+# Version 3.0 - Major fix where a drive could be marked as passed even if failing
 
 SMARTCTL="/usr/sbin/smartctl"
 
 echo "<prtg>"
 for DEVICE in `$SMARTCTL --scan-open | grep -o "^/dev/[0-9A-Za-z]*"`; do
   echo "	<result>"
-  $SMARTCTL -H $DEVICE > /dev/null
+  $SMARTCTL -a $DEVICE > /dev/null
   varstatus=$?
   
   if [ "$varstatus" -eq 0 ]; then
-    smart_status=$($SMARTCTL -a $DEVICE)
-    if echo $smart_status | egrep -wqi 'failure' ; then
-	echo "		<value>4</value>"
-	else
         echo "		<value>0</value>"
-    fi
   elif [ "$varstatus" -eq 255 ]; then
     echo "		<value>1</value>"
   elif [ "$varstatus" -eq 2 ]; then
