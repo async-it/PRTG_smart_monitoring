@@ -62,6 +62,7 @@ for DEVICE in `$SMARTCTL --scan-open | grep -o "^/dev/[0-9A-Za-z]*"`; do
   elif [ "$varstatus" -gt 1 ]; then
     echo "		<value>9</value>"
   fi;
+  echo "    <ValueLookup>oid.smart.test</ValueLookup>"
   echo "		<channel>SMART: $DEVICE</channel>"
   echo "		<unit>Custom</unit>"
   echo "    <ValueLookup>oid.smart.test</ValueLookup>"
