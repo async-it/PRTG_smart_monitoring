@@ -32,6 +32,7 @@
 # Version 2.3 - Add support when device does not have SMART support
 # Version 2.4 - Add check for keyword that may indicate failures - experience showed only checkink for smart status exit code is not enough
 # Version 3.0 - Major fix where a drive could be marked as passed even if failing
+# Version 3.1 - Change variables name for more clarity
 
 SMARTCTL="/usr/sbin/smartctl"
 
@@ -39,30 +40,29 @@ echo "<prtg>"
 for DEVICE in `$SMARTCTL --scan-open | grep -o "^/dev/[0-9A-Za-z]*"`; do
   echo "	<result>"
   $SMARTCTL -a $DEVICE > /dev/null
-  varstatus=$?
+  smartexitcode=$?
   
-  if [ "$varstatus" -eq 0 ]; then
+  if [ "$smartexitcode" -eq 0 ]; then
         echo "		<value>0</value>"
-  elif [ "$varstatus" -eq 255 ]; then
+  elif [ "$smartexitcode" -eq 255 ]; then
     echo "		<value>1</value>"
-  elif [ "$varstatus" -eq 2 ]; then
+  elif [ "$smartexitcode" -eq 2 ]; then
     echo "		<value>2</value>"
-  elif [ "$varstatus" -eq 4 ]; then
+  elif [ "$smartexitcode" -eq 4 ]; then
    echo "		<value>3</value>"
-  elif [ "$varstatus" -eq 8 ]; then
+  elif [ "$smartexitcode" -eq 8 ]; then
     echo "		<value>4</value>"
-  elif [ "$varstatus" -eq 16 ]; then
+  elif [ "$smartexitcode" -eq 16 ]; then
     echo "		<value>5</value>"
-  elif [ "$varstatus" -eq 32 ]; then
+  elif [ "$smartexitcode" -eq 32 ]; then
     echo "		<value>6</value>"
-  elif [ "$varstatus" -eq 64 ]; then
+  elif [ "$smartexitcode" -eq 64 ]; then
     echo "		<value>7</value>"
-  elif [ "$varstatus" -eq 128 ]; then
+  elif [ "$smartexitcode" -eq 128 ]; then
     echo "		<value>8</value>"
-  elif [ "$varstatus" -gt 1 ]; then
+  elif [ "$smartexitcode" -gt 1 ]; then
     echo "		<value>9</value>"
   fi;
-  echo "    <ValueLookup>oid.smart.test</ValueLookup>"
   echo "		<channel>SMART: $DEVICE</channel>"
   echo "		<unit>Custom</unit>"
   echo "    <ValueLookup>oid.smart.test</ValueLookup>"
