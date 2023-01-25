@@ -7,7 +7,7 @@ Script will find all openend devices check for smart errors
 
 ## USE:
 # On the server side:
-Place oid.smart.test.ovl in PRTG installation folder in \lookups\custom
+- Place oid.smart.test.ovl in PRTG installation folder in \lookups\custom  
 Reboot PRTG Core Service
 # On the device side:  
 - Put script in /var/prtg/scriptsxml/ - if folder does not exist, create it  
