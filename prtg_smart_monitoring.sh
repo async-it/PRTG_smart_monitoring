@@ -33,13 +33,14 @@
 # Version 2.4 - Add check for keyword that may indicate failures - experience showed only checkink for smart status exit code is not enough
 # Version 3.0 - Major fix where a drive could be marked as passed even if failing
 # Version 3.1 - Change variables name for more clarity
+# Version 3.2 - Add auto flag for device settings
 
 SMARTCTL="/usr/sbin/smartctl"
 
 echo "<prtg>"
 for DEVICE in `$SMARTCTL --scan-open | grep -o "^/dev/[0-9A-Za-z]*"`; do
   echo "	<result>"
-  $SMARTCTL -a $DEVICE > /dev/null
+  $SMARTCTL -d auto -a $DEVICE > /dev/null
   smartexitcode=$?
   
   if [ "$smartexitcode" -eq 0 ]; then
